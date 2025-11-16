@@ -19,7 +19,7 @@
       {
           "label": "compile and run",
           "type": "shell",
-          "command": "g++ -std=c++98 -o \"${fileBasenameNoExtension}\" \"${file}\" && \"${fileBasenameNoExtension}.exe\" < input.txt > output.txt && del \"${fileBasenameNoExtension}.exe\"",
+          "command": "g++ -std=c++23 -o \"${fileBasenameNoExtension}\" \"${file}\" && \"${fileBasenameNoExtension}.exe\" < input.txt > output.txt && del \"${fileBasenameNoExtension}.exe\"",
           "group": {
               "kind": "build",
               "isDefault": true
