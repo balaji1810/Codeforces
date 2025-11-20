@@ -9,6 +9,11 @@ using namespace std;
 #define INF LLONG_MAX
 
 void solve() {
+    ll a, b, n;
+    cin >> a >> b >> n;
+    ll k = a / b;
+    if (n <= k || b == a) cout << 1 << nl;
+    else cout << 2 << nl;
 }
 
 int main() {
