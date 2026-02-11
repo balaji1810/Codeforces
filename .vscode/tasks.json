@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "compile",
+          "type": "shell",
+          "command": "g++",
+          "args": [
+              "-DLOCAL",
+              "-std=c++23",
+              "-o",
+              "${fileBasenameNoExtension}",
+              "${file}"
+          ],
+          "group": {
+              "kind": "build",
+              "isDefault": false
+          }
+      },
+      {
+          "label": "compile and run",
+          "type": "shell",
+          "command": "g++ -DLOCAL -std=c++23 -O2 \"${file}\" -o \"${fileBasenameNoExtension}\" && \"${fileBasenameNoExtension}.exe\" < input.txt > output.txt && del \"${fileBasenameNoExtension}.exe\"",
+          "group": {
+              "kind": "build",
+              "isDefault": true
+          }
+      }
+  ]
+}
