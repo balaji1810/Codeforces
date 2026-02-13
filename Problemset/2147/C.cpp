@@ -1,4 +1,7 @@
+// https://codeforces.com/contest/2147/problem/C
+// C. Rabbits
 #include <bits/stdc++.h>
+#include <bit>
 using namespace std;
 
 #define nl "\n"
@@ -63,6 +66,54 @@ template<typename T>
 vector<T> readvec(int n, bool from_one = false){ int i = 0; if(from_one){i++; n++;} vector<T> v(n); for(i;i<n;i++) cin>>v[i]; return v; }
 
 void solve() {
+    int n;
+    string s;
+    cin >> n >> s;
+    vector<int> z;
+    for (int i = 0; i < n; ++i)
+        if (s[i] == '0')
+            z.pb(i);
+    if (z.empty()) {
+        cout << "YES" << nl;
+        return;
+    }
+
+    vector<char> canL(n, 0), canR(n, 0);
+    for (int i : z) {
+        canL[i] = (i == 0) || (s[i-1] == '0') || (i >= 2 && s[i-1] == '1' && s[i-2] == '0');
+        canR[i] = (i == n-1) || (s[i+1] == '0') || (i + 2 < n && s[i+1] == '1' && s[i+2] == '0');
+    }
+
+    int m = z.size();
+    int idx = 0;
+    while (idx < m) {
+        int j = idx;
+        while (j + 1 < m && z[j+1] == z[j] + 2 && s[z[j] + 1] == '1')
+            ++j;
+
+        int first = z[idx];
+        int cur = (canL[first] ? 1 : 0) | (canR[first] ? 2 : 0);
+        if (!cur) {
+            cout << "NO" << nl;
+            return;
+        }
+
+        for (int t = idx + 1; t <= j; ++t) {
+            int i = z[t];
+            int nxt = 0;
+            if ((cur & 1) && canR[i])
+                nxt |= 2;
+            if ((cur & 2) && canL[i])
+                nxt |= 1;
+            cur = nxt;
+            if (!cur) {
+                cout << "NO" << nl;
+                return;
+            }
+        }
+        idx = j + 1;
+    }
+    cout << "YES" << nl;
 }
 
 int main(){

@@ -1,4 +1,7 @@
+// https://codeforces.com/problemset/problem/2147/B
+// B. Multiple Construction
 #include <bits/stdc++.h>
+#include <bit>
 using namespace std;
 
 #define nl "\n"
@@ -63,6 +66,27 @@ template<typename T>
 vector<T> readvec(int n, bool from_one = false){ int i = 0; if(from_one){i++; n++;} vector<T> v(n); for(i;i<n;i++) cin>>v[i]; return v; }
 
 void solve() {
+    int n; 
+    cin >> n;
+    int m = 2 * n;
+    vector<int> a(m + 1, 0);
+    vector<char> used(m + 1, 0);
+    int cur = 1;
+    for (int x = n; x >= 1; --x) {
+        while (used[cur])
+            ++cur;
+        int i = cur;
+        int j = i + x;
+        while (j <= m && used[j])
+            j += x;
+        a[i] = a[j] = x;
+        used[i] = used[j] = 1;
+    }
+    for (int i = 1; i <= m; ++i) {
+        if (i > 1) cout << ' ';
+        cout << a[i];
+    }
+    cout << nl;
 }
 
 int main(){

@@ -1,4 +1,7 @@
+// https://codeforces.com/problemset/problem/2147/B
+// A. Shortest Increasing Path
 #include <bits/stdc++.h>
+#include <bit>
 using namespace std;
 
 #define nl "\n"
@@ -63,6 +66,14 @@ template<typename T>
 vector<T> readvec(int n, bool from_one = false){ int i = 0; if(from_one){i++; n++;} vector<T> v(n); for(i;i<n;i++) cin>>v[i]; return v; }
 
 void solve() {
+    ll x, y;
+    cin >> x >> y;
+    
+    if(y > x) cout << 2 << nl;
+    else if( y >= 2 && x - y >= 2) cout << 3 << nl;
+    else {
+        cout << -1 << nl;
+    }
 }
 
 int main(){
