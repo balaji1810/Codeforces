@@ -14,7 +14,7 @@ const ll INF = LLONG_MAX;
 const int INF_INT = INT_MAX;
 
 #ifdef LOCAL
-  #define debug(...) (cerr << "[DEBUG] ", _dbg(#__VA_ARGS__, __VA_ARGS__), cerr << nl)
+  #define debug(...) (cerr << "[DEBUG] ", _dbg(#__VA_ARGS__, __VA_ARGS__), cerr << '\n')
   template<class T> void _print(const T &x) { cerr << x; }
 
   template<class A, class B> void _print(const pair<A,B> &p) {
@@ -63,6 +63,36 @@ template<typename T>
 vector<T> readvec(int n, bool from_one = false){ int i = 0; if(from_one){i++; n++;} vector<T> v(n); for(i;i<n;i++) cin>>v[i]; return v; }
 
 void solve() {
+    int n;
+    cin >> n;
+    unordered_map<ll, ll> frequency_map;
+    frequency_map.reserve(n * 2);
+    for (int i = 0; i < n; i++) {
+        ll x;
+        cin >> x;
+        frequency_map[x]++;
+    }
+    vector<pair<ll,ll>> groups;
+    groups.reserve(frequency_map.size());
+    for (auto &p : frequency_map)
+        groups.pb({p.second, p.first});
+    sort(all(groups), [](const auto& A, const auto& B) {
+        if (A.first != B.first)
+            return A.first > B.first;
+        return A.second > B.second;
+    });
+    ll A = 0, B = 0;
+    int turn = 0;
+    for (auto &g : groups) {
+        ll c = g.first;
+        ll l = g.second;
+        ll alice_moves = (l + (turn == 0)) / 2;
+        ll bob_moves   = l - alice_moves;
+        A += alice_moves * c;
+        B += bob_moves   * c;
+        if (l & 1) turn ^= 1;
+    }
+    cout<<A _ B << nl;
 }
 
 int main(){

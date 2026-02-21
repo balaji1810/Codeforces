@@ -63,6 +63,20 @@ template<typename T>
 vector<T> readvec(int n, bool from_one = false){ int i = 0; if(from_one){i++; n++;} vector<T> v(n); for(i;i<n;i++) cin>>v[i]; return v; }
 
 void solve() {
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    int zeros = 0, ones = 0;
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+        if (a[i] == 0) zeros++;
+        else if(a[i] == -1) ones++;
+    }
+    if(ones % 2 == 1) {
+        cout << zeros + 2 << nl;
+    } else {
+        cout << zeros << nl;
+    }
 }
 
 int main(){

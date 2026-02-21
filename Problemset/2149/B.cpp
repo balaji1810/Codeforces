@@ -63,6 +63,15 @@ template<typename T>
 vector<T> readvec(int n, bool from_one = false){ int i = 0; if(from_one){i++; n++;} vector<T> v(n); for(i;i<n;i++) cin>>v[i]; return v; }
 
 void solve() {
+    int n;
+    cin >> n;
+    auto a = readvec<int>(n);
+    sort(all(a));
+    int ans = 0;
+    for(int i = 0; i < n; i+=2) {
+        ans = max(ans, abs(a[i+1]-a[i]));
+    }
+    cout << ans << nl;
 }
 
 int main(){

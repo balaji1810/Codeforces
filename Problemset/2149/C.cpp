@@ -63,6 +63,19 @@ template<typename T>
 vector<T> readvec(int n, bool from_one = false){ int i = 0; if(from_one){i++; n++;} vector<T> v(n); for(i;i<n;i++) cin>>v[i]; return v; }
 
 void solve() {
+    int n, k;
+    cin >> n >> k;
+    int countUnique = 0, countK = 0;
+    unordered_set<int> s;
+    for (int i = 0; i < n; i++){
+        int a;
+        cin >> a;
+        if(s.find(a) == s.end() && a < k) countUnique++;
+        s.insert(a);
+        if(a == k) countK++;
+    }
+    int diff = k - countUnique;
+    cout << max(diff, countK) << nl;
 }
 
 int main(){
