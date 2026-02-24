@@ -20,8 +20,25 @@
       {
           "label": "compile and run",
           "type": "shell",
-          "command": "g++ -DLOCAL -std=c++23 -O2 \"${file}\" -o \"${fileBasenameNoExtension}\" && \"${fileBasenameNoExtension}.exe\" < input.txt > output.txt && del \"${fileBasenameNoExtension}.exe\"",
-          "group": {
+          "command": "g++",
+          "args": [
+              "-DLOCAL",
+              "-std=c++23",
+              "-O2",
+              "${file}",
+              "-o",
+              "${fileBasenameNoExtension}",
+              "&&",
+              "${fileBasenameNoExtension}.exe",
+              "<",
+              "input.txt",
+              ">",
+              "output.txt",
+              "&&",
+              "del",
+              "${fileBasenameNoExtension}.exe"
+            ],
+            "group": {
               "kind": "build",
               "isDefault": true
           }
