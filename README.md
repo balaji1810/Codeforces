@@ -1,6 +1,6 @@
 # Codeforces Solutions
 
-Welcome to my **Codeforces Solutions Repository** — a collection of my **contest submissions** and **practice problems**.
+Welcome to my **Codeforces Solutions Repository** : a collection of my **contest submissions** and **practice problems**.
 This repo reflects my ongoing journey in **competitive programming**, improving my **algorithmic thinking** and **problem-solving skills**.
 
 ---
